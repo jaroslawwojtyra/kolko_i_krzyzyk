@@ -19,3 +19,16 @@ td {
 td:hover {
   background-color: aliceblue;
 }
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: bold;
+  font-size: 72px;
+  color: red
+  /* display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr; */
+}
