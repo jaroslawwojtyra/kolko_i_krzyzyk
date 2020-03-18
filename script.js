@@ -1,7 +1,8 @@
 let actualTurn = 1;
-const player1 = 'panorama_fish_eye';
-const player2 = 'close';
+const icon1 = 'panorama_fish_eye';
+const icon2 = 'close';
 let board = document.querySelector('#board');
+cons
 
 board.addEventListener('click', icon);
 
@@ -16,10 +17,10 @@ function addIcon(iconName) {
 function icon(event) {
   let round = actualTurn % 2;
   if (round === 1){
-    addIcon("panorama_fish_eye");
+    addIcon(icon1);
   }
     else {
-      addIcon("close");
+      addIcon(icon2);
     }
     actualTurn += 1;
   }
