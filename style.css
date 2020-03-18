@@ -6,6 +6,17 @@
   cursor: pointer;
 }
 
+.game {
+  width: 60%;
+  float: left;
+}
+
+.rules {
+  width: 40%;
+  float: left;
+}
+
+
 td {
 	width: 140px;
 	height: 140px;
