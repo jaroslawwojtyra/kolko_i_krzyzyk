@@ -5,27 +5,21 @@ let board = document.querySelector('#board');
 
 board.addEventListener('click', icon);
 
-function addO() {
+function addIcon(iconName) {
   const el = document.createElement("i");
-  el.innerText = "panorama_fish_eye";
+  el.innerText = iconName;
   el.classList.add("material-icons");
   const clickEl = document.querySelector(`#${event.target.id}`);
   clickEl.appendChild(el);
 }
-function addX() {
-  const el = document.createElement("i");
-  el.innerText = "close";
-  el.classList.add("material-icons");
-  const clickEl = document.querySelector(`#${event.target.id}`);
-  clickEl.appendChild(el);
-}
+
 function icon(event) {
   let round = actualTurn % 2;
   if (round === 1){
-    addO();
+    addIcon("panorama_fish_eye");
   }
     else {
-    addX();
+      addIcon("close");
     }
     actualTurn += 1;
   }

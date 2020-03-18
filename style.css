@@ -1,3 +1,7 @@
+body {
+  background-color: azure;
+}
+
 #board {
   width: 420px;
   height: 420px;
@@ -30,6 +34,7 @@ td {
 td:hover {
   background-color: aliceblue;
 }
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: bold;
