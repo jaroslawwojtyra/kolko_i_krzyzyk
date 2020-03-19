@@ -13,26 +13,6 @@ const all_td = document.getElementsByTagName("td");
 // nasłuchiwanie kliknięcia na tablicy gry
 gameBoard.addEventListener('click', play);
 
-// dodanie kółka lub krzyżyka
-function addIcon(iconName) {
-    const el = document.createElement("i");
-    el.innerText = iconName;
-    el.classList.add("material-icons", iconName);
-    const clickEl = document.querySelector(`#${event.target.id}`);
-    clickEl.appendChild(el);
-    actualTurn += 1;
-};
-
-// zmiana nazwy aktualnego gracza
-function changeName(name, winName) {
-  if (endGame == false) {
-      playerName.innerText = `Aktualny gracz: ${name}`;
-    }
-    else {
-      resultText.innerText = `Grę wygrywa: ${winName}`;
-    };
-};
-
 // rozgrywka
 function play(event) {
   let round = actualTurn % 2;
@@ -51,13 +31,37 @@ function play(event) {
     };
   };
 
-    // sprawdzenie czy wygrana
+  // dodanie kółka lub krzyżyka + klasy
+  function addIcon(iconName) {
+      const el = document.createElement("i");
+      el.innerText = iconName;
+      el.classList.add("material-icons", iconName);
+      const clickEl = document.querySelector(`#${event.target.id}`);
+      clickEl.appendChild(el);
+      actualTurn += 1;
+  };
+
+  // zmiana nazwy aktualnego gracza
+  function changeName(name, winName) {
+    if (endGame == false) {
+        playerName.innerText = `Aktualny gracz: ${name}`;
+      }
+      else {
+        resultText.innerText = `Grę wygrywa: ${winName}`;
+      };
+  };
+
+// sprawdzenie czy wygrana lub remis
     function checkWin(p) {
       if (moveCounter > 3) {
-        if (checkH(p) || checkV(p) || checkD(p))
+        if (checkH(p) || checkV(p) || checkD(p)){
         end();
+      }
+        else if (moveCounter == 8) {
+          resultText.innerText = 'Remis';
       };
-      };
+    };
+  };
 
     // sprawdzenie lini poziomych
     function checkH(p) {
@@ -79,6 +83,7 @@ function play(event) {
       };
     };
 
+// sprawdzenie skosów
     function checkD(p) {
       if (all_td[0].innerText == p && all_td[4].innerText == p &&
           all_td[8].innerText == p ) {
@@ -89,6 +94,8 @@ function play(event) {
           return true;
         };
       };
+
+// koniec gry
     function end() {
       endGame=true;
       playerName.innerText = 'Koniec gry';
