@@ -10,12 +10,6 @@ let playerName = document.querySelector('#playerName');
 let resultText = document.querySelector('.result');
 const all_td = document.getElementsByTagName("td");
 
-const board = [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
-];
-
 const winCombinations = [
     [0,1,2], [3,4,5], [6,7,8],
     [0,3,6], [1,4,7], [2,5,8],
@@ -41,7 +35,7 @@ function changeName(name, winName) {
       playerName.innerText = `Aktualny gracz: ${name}`;
     }
     else {
-      resultText.innerText = `Grę wygrało: ${winName}`;
+      resultText.innerText = `Grę wygrywa: ${winName}`;
 
     }
 };
@@ -64,14 +58,38 @@ function play(event) {
     }};
 
     // sprawdzenie czy wygrana
-    function checkWin(p) {
+    function checkWin(x) {
       if (moveCounter > 3) {
-        //linie poziome - sprawdzenie
-        for (var i = 0; i < all_td.length; i = i + 3) {
-          if (all_td[i].innerText == p && all_td[i+1].innerText == p && all_td[i+2].innerText == p ) {
-            endGame=true;
-            playerName.innerText = 'Koniec gry';
-          };
-        };
+        if (checkH(x) || checkV(x))
+        //
+        // chekX();
+        end();
+        }
       };
-    };
+
+    // sprawdzenie lini poziomych
+    function checkH(p) {
+      for (var i = 0; i < all_td.length; i = i + 3) {
+        if (all_td[i].innerText == p && all_td[i+1].innerText == p &&
+          all_td[i+2].innerText == p ) {
+            console.log('aaaaaaaaaaaaaaaa');
+          return true
+        }
+      }
+    }
+
+    // sprawdzenie lini pionowych
+    function checkV(p) {
+      for (var i = 0; i < 3; i ++) {
+        if (all_td[i].innerText == p && all_td[i+3].innerText == p &&
+          all_td[i+6].innerText == p ) {
+          console.log('xxccbb');
+          return true
+        }
+      }
+    }
+
+    function end() {
+      endGame=true;
+      playerName.innerText = 'Koniec gry';
+    }
