@@ -31,7 +31,15 @@ body {
   line-height: 48px;
   text-align: center;
 }
-
+.reload {
+  width: 60%;
+  font-size: 24px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  line-height: 48px;
+  text-align: center;
+}
 
 td {
 	width: 140px;
