@@ -3,10 +3,11 @@ let moveCounter = 0;
 let endGame = false;
 const icon1 = 'panorama_fish_eye';
 const icon2 = 'close';
-const p1 = 'Aktualny gracz: Kółko';
-const p2 = 'Aktualny gracz: Krzyżyk';
+const p1 = 'Kółko';
+const p2 = 'Krzyżyk';
 let gameBoard = document.querySelector('#board');
 let playerName = document.querySelector('#playerName');
+let resultText = document.querySelector('.result');
 
 const board = [
         ['', '', ''],
@@ -33,20 +34,27 @@ function addIcon(iconName) {
     actualTurn += 1;
 };
 
-// zmiana nazwy aktualnego gracza
-function changeName(name) {
-  if (endGame == false) {
-      playerName.innerText = name;
-    }
-};
+function addClass(p) {
+    event.target.classList.add(p);
+    console.log(event.target);
+}
 
 // sprawdzenie czy wygrana
 function checkWin() {
   if (moveCounter > 3) {
     endGame=true;
     playerName.innerText = 'Koniec gry';
+    resultText.innerText = `Grę wygrało: ${p1}`;
+
   }
 }
+
+// zmiana nazwy aktualnego gracza
+function changeName(name) {
+  if (endGame == false) {
+      playerName.innerText = `Aktualny gracz: ${name}`;
+    }
+};
 
 // rozgrywka
 function play(event) {
@@ -54,15 +62,15 @@ function play(event) {
   if (event.target.innerText == '' && endGame == false){
     if (round === 1){
       addIcon(icon1);
+      addClass(p1);
       checkWin();
       changeName(p2);
-
     }
       else {
         addIcon(icon2);
+        addClass(p2);
         checkWin();
         changeName(p1);
       };
       moveCounter ++;
-      console.log(moveCounter);
     }};
