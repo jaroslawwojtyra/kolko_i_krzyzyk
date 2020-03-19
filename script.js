@@ -1,12 +1,12 @@
 let actualTurn = 1;
+let moveCounter = 0;
+let endGame = false;
 const icon1 = 'panorama_fish_eye';
 const icon2 = 'close';
-const p1 = 'Kółko';
-const p2 = 'Krzyżyk';
-const end = 'Koniec gry'
+const p1 = 'Aktualny gracz: Kółko';
+const p2 = 'Aktualny gracz: Krzyżyk';
 let gameBoard = document.querySelector('#board');
 let playerName = document.querySelector('#playerName');
-let endGame = false;
 
 const board = [
         ['', '', ''],
@@ -35,19 +35,16 @@ function addIcon(iconName) {
 
 // zmiana nazwy aktualnego gracza
 function changeName(name) {
-  if (playerName.innerText = end) {
-    return
-  }
-    else {
+  if (endGame == false) {
       playerName.innerText = name;
     }
 };
 
 // sprawdzenie czy wygrana
 function checkWin() {
-  if (true) {
+  if (moveCounter > 3) {
     endGame=true;
-    changeName("Koniec gry");
+    playerName.innerText = 'Koniec gry';
   }
 }
 
@@ -59,10 +56,13 @@ function play(event) {
       addIcon(icon1);
       checkWin();
       changeName(p2);
+
     }
       else {
         addIcon(icon2);
-        // checkWin();
+        checkWin();
         changeName(p1);
       };
+      moveCounter ++;
+      console.log(moveCounter);
     }};
